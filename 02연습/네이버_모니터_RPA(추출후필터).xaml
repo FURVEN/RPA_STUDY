@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="네이버_모니터_RPA" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="834.4,4554.4" sap2010:WorkflowViewState.IdRef="네이버_모니터_RPA_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="네이버_모니터_RPA" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="834.4,4493.6" sap2010:WorkflowViewState.IdRef="네이버_모니터_RPA_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -44,6 +44,7 @@
       <x:String>UiPath.Excel</x:String>
       <x:String>UiPath.Excel.Model</x:String>
       <x:String>UiPath.Excel.Activities.Business</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -110,20 +111,23 @@
       <AssemblyReference>System.Data.SqlClient</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="네이버_모니터_RPA" sap:VirtualizedContainerService.HintSize="688,4489.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="네이버_모니터_RPA" sap:VirtualizedContainerService.HintSize="688,4428.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="모니터" Name="str검색어" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt모니터" />
+      <Variable x:TypeArguments="x:String" Name="str가격" />
+      <Variable x:TypeArguments="x:Int32" Name="int가격" />
+      <Variable x:TypeArguments="x:String" Name="list검색어" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="625.6,182.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;모니터 검색 시작&quot;]" />
-    <ui:InputDialog Options="{x:Null}" DisplayName="검색어 입력 | Input Dialog" sap:VirtualizedContainerService.HintSize="625.6,335.2" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="검색어를 입력하세요" OptionsString="모니터" Title="검색어">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="625.6,182.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;쇼핑 검색 시작&quot;]" />
+    <ui:InputDialog Options="{x:Null}" DisplayName="검색어 입력 | Input Dialog" sap:VirtualizedContainerService.HintSize="625.6,335.2" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="검색어를 입력하세요" OptionsString="모니터" Title="검색어">
       <ui:InputDialog.Result>
-        <OutArgument x:TypeArguments="x:String">[str검색어]</OutArgument>
+        <OutArgument x:TypeArguments="x:String">[list검색어]</OutArgument>
       </ui:InputDialog.Result>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -210,7 +214,7 @@
                 </uix:TargetAnchorable>
               </uix:NSetText.Target>
             </uix:NSetText>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'PATH'" sap:VirtualizedContainerService.HintSize="353.6,130.4" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_DOUBLE" DisplayName="Click 'PATH'" sap:VirtualizedContainerService.HintSize="353.6,130.4" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
               <ui:Click.CursorPosition>
                 <ui:CursorPosition Position="Center">
                   <ui:CursorPosition.OffsetX>
@@ -236,133 +240,143 @@
         </ActivityAction>
       </ui:BrowserScope.Body>
     </ui:BrowserScope>
-    <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="조건 검색 | Attach Browser" sap:VirtualizedContainerService.HintSize="625.6,901.6" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="e8a8d3c062f7cef04932f47eab7795b9" Selector="&lt;html app='chrome.exe' title='모니터 : 네이버 쇼핑' /&gt;">
-      <ui:BrowserScope.Body>
-        <ActivityAction x:TypeArguments="x:Object">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="416,714.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:Int32" Default="500000" Name="int가격" />
-            </Sequence.Variables>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="353.6,147.2" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="e8fb086d-8a74-4400-872c-05993add5fd1" InformativeScreenshot="30d02960024127d4aacc4e5249dc2783" Selector="&lt;webctrl aaname='삼성전자' class='filter_text_over__iesoO' parentid='container' tag='SPAN' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="353.6,147.2" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="a2d88959-2a91-4601-931d-c7b919e89ad2" InformativeScreenshot="39f713d86e05edafa21e5b7ad43de704" Selector="&lt;webctrl aaname='LG전자' class='filter_text_over__iesoO' parentid='container' tag='SPAN' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-            <uix:NSetText DisplayName="Set Text '가격'" sap:VirtualizedContainerService.HintSize="353.6,203.2" sap2010:WorkflowViewState.IdRef="NSetText_2" Text="[int가격.ToString]" Version="V3">
-              <uix:NSetText.Target>
-                <uix:TargetAnchorable BrowserURL="https://search.shopping.naver.com/search/all?query=%EB%AA%A8%EB%8B%88%ED%84%B0" DesignTimeRectangle="1187, 687, 112, 22" DesignTimeScaleFactor="1.25" ElementType="InputBox" FullSelectorArgument="&lt;webctrl aaname='최대가격 입력' parentid='container' tag='INPUT' type='text' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='최대가격 입력' parentid='container' tag='INPUT' type='text' class='' placeholder='999,999,990' /&gt;" Guid="e03d3c09-c784-44cf-ae8b-6c56bc039a40" ImageBase64="" InformativeScreenshot="e84e8cf3b1de0b9288b9512cd57f0068.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='모니터 : 네이버 쇼핑' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V3" Visibility="Interactive">
-                  <uix:TargetAnchorable.Anchors>
-                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                      <uix:Target DesignTimeRectangle="158, 670, 200, 53" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='가격' parentid='container' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='가격' parentid='container' tag='DIV' type='' class='filter_finder_tit__x1gjS' check:innerText='가격' /&gt;" SearchSteps="Selector" />
-                    </scg:List>
-                  </uix:TargetAnchorable.Anchors>
-                </uix:TargetAnchorable>
-              </uix:NSetText.Target>
-            </uix:NSetText>
-            <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'A  #'" sap:VirtualizedContainerService.HintSize="353.6,130.4" sap2010:WorkflowViewState.IdRef="Click_5" KeyModifiers="None" MouseButton="BTN_LEFT">
-              <ui:Click.CursorPosition>
-                <ui:CursorPosition Position="Center">
-                  <ui:CursorPosition.OffsetX>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetX>
-                  <ui:CursorPosition.OffsetY>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:CursorPosition.OffsetY>
-                </ui:CursorPosition>
-              </ui:Click.CursorPosition>
-              <ui:Click.Target>
-                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0f7518bd-3997-4fec-ba00-173adb2df754" InformativeScreenshot="d26cb38be7a1c01abf034542a1268ffb" Selector="&lt;webctrl aaname='가격대 검색' aria-role='button' tag='A' /&gt;">
-                  <ui:Target.TimeoutMS>
-                    <InArgument x:TypeArguments="x:Int32" />
-                  </ui:Target.TimeoutMS>
-                  <ui:Target.WaitForReady>
-                    <InArgument x:TypeArguments="ui:WaitForReady" />
-                  </ui:Target.WaitForReady>
-                </ui:Target>
-              </ui:Click.Target>
-            </ui:Click>
-          </Sequence>
-        </ActivityAction>
-      </ui:BrowserScope.Body>
-    </ui:BrowserScope>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="625.6,527.2" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="3a17035e-a7b1-4d04-bb50-8d4cd1b67af3" Version="V2">
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application/Browser" sap:VirtualizedContainerService.HintSize="625.6,704" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="3a17035e-a7b1-4d04-bb50-8d4cd1b67af3" Version="V2">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="416,270.4" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="실행" sap:VirtualizedContainerService.HintSize="416,447.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt모니터]" DisplayName="데이터 추출 | Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='제품이름'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='가격'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column css-selector='.price_num__S2p_v' name='Column2' attr='fulltext' /&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="353.6,182.4" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="10" Version="V3">
+            <uix:NMouseScroll KeyModifiers="{x:Null}" Direction="Down" DisplayName="Mouse Scroll" sap:VirtualizedContainerService.HintSize="353.6,176.8" sap2010:WorkflowViewState.IdRef="NMouseScroll_1" InteractionMode="HardwareEvents" MovementUnits="30" Version="V3" />
+            <uix:NExtractData AppendResults="False" ContinueOnError="True" DataTable="[dt모니터]" DisplayName="데이터 추출 | Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured' AddCvHeader='true' IsScrollEnabled='false'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column0' Name='제품이름'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column1' Name='URL'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;true&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;true&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' ReferenceName='Column2' Name='가격'&gt;&#xA;&#x9;&#x9;&lt;IsValidName&gt;true&lt;/IsValidName&gt;&#xA;&#x9;&#x9;&lt;ValidationErrorMessage /&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='fulltext' name2='Column1' attr2='href'&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='a' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='fulltext'&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='strong' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='span' text='원' idx='1' /&gt;&lt;webctrl tag='em' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="353.6,182.4" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="20" Version="V3">
               <uix:NExtractData.Target>
-                <uix:TargetAnchorable DesignTimeRectangle="158, -448, 1175, 3992" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl class='basicList_list_basis__uNBZx' parentid='content' tag='DIV' /&gt;" Guid="99de5113-fab7-4cbe-af12-b564ca40d15a" InformativeScreenshot="36f64268badc90b147c96614a1230b31.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='모니터 : 네이버 쇼핑' /&gt;" SearchSteps="Selector" Version="V3" Visibility="Interactive" />
+                <uix:TargetAnchorable DesignTimeRectangle="158, -379, 1175, 9376" DesignTimeScaleFactor="1.25" FullSelectorArgument="&lt;webctrl class='basicList_list_basis__uNBZx' parentid='content' tag='DIV' /&gt;" Guid="3bf85009-ea87-4060-9284-b4d8b099bed5" InformativeScreenshot="192d2efda0f6577e525c6f415bb6d9e1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='모니터 : 네이버 쇼핑' /&gt;" SearchSteps="Selector" Version="V3" Visibility="Interactive" />
               </uix:NExtractData.Target>
             </uix:NExtractData>
           </Sequence>
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="a18e450e417331189ca0248d4fb1202a.jpg" Selector="&lt;html app='chrome.exe' title='모니터 : 네이버 쇼핑' /&gt;" Title="모니터 : 네이버 쇼핑" Url="https://search.shopping.naver.com/search/all?adQuery=%EB%AA%A8%EB%8B%88%ED%84%B0&amp;maker=3675%209317&amp;maxPrice=500000&amp;minPrice=0&amp;origQuery=%EB%AA%A8%EB%8B%88%ED%84%B0&amp;pagingIndex=1&amp;pagingSize=40&amp;productSet=total&amp;query=%EB%AA%A8%EB%8B%88%ED%84%B0&amp;sort=rel&amp;timestamp=&amp;viewType=list" />
+        <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAlUSURBVFhH7ZZnVFRnAobzezdFE5U2wDAUQY0FpIigWGOJRlfXuHFdNSbRRKOJGksSy8YSY44FFSuKIL33MjBcBoaBYRiGOjO46EgQu6DxGEt0nv0kZP2Bu7/3R95z3vPde8937vN8373nnvvKH/kjv8fZsuGgs+ULq6v5c6vcvNLqZl4uutSqMC+yulvet3pa5olxjtWzdZboDKvnhWmiU0XfsXq1TrN6WWZavS2zrd6mudYhLe9bhzZ/YB3esMQ60rjcOsqw0upX87k1sPpLa7B2ozWkauv2XuyLyCybcDavx9W8VnQVctMnuJk/RGFegrt5kehCPMzz8bDMxdPynuhsvCyz8Gp9Pr6Ht3kO3qZ5+LQsYGjTBwxr/AfDjcsYWfcJfrWf4a9bS1D1esZqNxNa8W13L/ZFnMxfC4GNuJi+xNW0Rgh8hptpBQrTchQtSwm/mU7Hk5vMurQJT9MC0b/iZZrPYDF6C6h380Lmtm2m88kt9nbGCfhyRgi4b+0qRtesIUDAx2g3Ear5lnHlO+jFvoijeRsyk5Bo2YhryzrkLWtFV6NoXin6MWldGp5n0aU9eDQtxlPUS9T7ecVqhzQuYenFvT1zMm9rGWH4lFG1q/GrWSvgGwgSKx9b+S2hAh6m3vUyge9wMm0XAt8Igc24Nm9A3vQlbk1rUTStFgJVPTdfefkYno0f4dXwEYNFvUV96j9miHEFay4e75kTe11ilP4LfHXr8K/eSKB2C8GarQL+T8LKdjNB+qGvgIPpe5xadiFr3oFz81Zcmr5G3rgZecNXKBrXs7Mzo+fmaXeq8DKu7ungutX4iA4xfM7Q2jVi5bqeOdsvJeErwP5VWwgQqx5TsZ2Q8p2ML/ueCaU/Mkl14GUC+3Fs/gFZ0x6cm3bi3LhDCGxDXv8NbsYtjBTn954+7AFsupzAYMN6vGvX46PfwFD9V3wjoM/T+aib8fqdjNZuI0CzQ8B3Mla9h3HSPgE/wOSScKYoI/oK2LccwaH5EE5N+5E17sO5/ntcjLuQG7/DrW4HCsM2vrKm90CeJ/12LXvac/n6YiqqLlPvVVhnSWK0ZicBFbsJUu9lbNk+Qkv3E6YKZ1LxUaYWHWdawem+AnbNJ7FvOoZj41FkDeE4Gw/gWvcj8rp9yGu/x02/G/eaXXx6IZmOR3d7cS/y86+P2Naai1/5XvzV+wgq20+wdJBQ1WHGF0cwUXmCqYWnmZ4fxcy8mL4Cg5qisG88g2PDaZyMJ5DVReBsOIJrbTjymgO46fbjXv0j7lX78NT+wCpzOkfbKzl2uZKtrYWEaiPwVR/Ev+wQgaWHCVZFMLb4OOOVp5hYFMmUgiimCfC7OXHMzk7qKzCwKR67xljs66NxrDuLzBCJTH8K15oTyHXHUFRH4K49gkflYTwrDjFY1EcdzjD1EUaUHWWUFIFf6TECVCcIKjnFWGUk44qimFAQzeT8WN7JjWeGAM/OTGNORmZfgQGNaQysT8bemIiDIQ6n2vPIaqJx1UXhWnUWN20kCs0p3MtP4qk+weCyEwyRTjJcOs0I1Wl8S87gX3yWQOU5gotiGFcYS1h+PJPykpiak8KMrHRmZWQzNy2PeakFfQXeasgVAtnY1WXgUJuGY00KMl0SzlXxuFbG4qY5j6I8Bg/1OTylKLxLzzG0NJq3S6IZWXweP2UsAUXxjClMJCQ/mfF5qUzISWdKVhbTM3J5Ny2fualK5ierWJAkvUyghAFGJYMMBdjrc3HQZeNUlYlzZTqumlTk5ckoypJwlxLxVCXgXZzA0OJEhiuTGFmUYhtdkEpgfjrBeZmE5mQTlpXL5Mx8pmUUCXgJs5NL+UuSmvcTNCyM1fYV6F9fwVuGMgbWlmJfU4JjtRJHbQEyTb7NpTwXeVk2CikLd1UGXsXpeCszGFaUyYiCLHzzcwjIyyUoJ4+Q7ELGZyqZmF7C1LRSZqSomZVUwdwELQvidXxwvpa/x9T1FehXV8ObhmoG6Cux01Vgp1XjqJGQVahwUZcgL1XipirEo7gAr6J8vAsLbEPzChiZV4RfjpKA7BKCs0oJzZAIS1MzOVXD9GQtsxJ1zInXMy+2jr/FNLA4upmlUea+Am8YGuhfa2RAjYFB1XrsKqtxqNAiU1fiLJUjV5WjKC7Do6gUrwIV3nmlDMuRGJldxujMcgIzKhibrmVcShUTk3VMSdQzI6GO2XH1zI1pYkG0iUVRrSw508aHkda+Aq8bWulXa+ZNXTMDtI3YaepxKK/DSarFWVWDS4nOpiiqwj2/Eq9cDT45lQzLqrKNyqwmIKOGoDQ9ISkGwpKMTEpstO1QX6bkYjfrci8z/1wb+S13ia3qYtmpTtvHJ6/ZerEv8rqhnTf0VvpXtQmBCwyqsGBfZkImtSAracS1qB5FoRGPXAOeWXqGZBoYnlHHqLR6/FMaGJPUxLjEFiYmWJgae4HYhjs9X8ib93/lw/Od3Lr/FEvnEz45cYeVR7v77sCrtdd5reaqELjCW5p2BpVfxl66iKOqDZnyAi4FFuT5Zpt7dgtemc34pDXzdmoLvskW/BNbCU5oY3z8RSaet/JOdDuxxns9Ag8e2yhsesitn5/ReuUZnx59wOrDD18ioO/idd0d+mlv8WbFDQaUXRUCnTiWdCArascl34o85xKKzDa80v6FT3Ibw5Mu4pdoJTChnZC4DsJiOpkUfc02PeoGcXUPegRS9I97xudp7bCxKvwZaw7Y+gr8Wd/Na7ou3tDeFgK3hcBN7FQ3cFBeR1ZwFZfcTtyyr+CR3oFnSjs+ST8xPKEDv7hOgmKvExJzk7CoW0w528XMM3eJN/wG/i7rEYUNT3uOWztg1SEbaw/wsh24y6s9And6BW4x6D8C14TAVeRZnbinXxECPwmBDiHQiW/8dVvQ+RtC4BZh5+70CMw4c8+2W/kLUutTtqQ8ZkXkYzSmZ+RUix34TaDvT+mf9N0Z/03A6X8I+MVdEzvwu8BtIdDNjMh7zD593zbv5APbwuO/sDjiEcuOiBcw/CmrDtrEI+BQL/ZF+hm7+72q6z7Yr6pL6q+5LQkBaWDpTcm++LrkVHhdcs29Ksmzr0juGVckz5QOySexQ3o74Yo0Kv6aFCh+AkOib0sTznVJU6K6pZmRd6X3Tt+X5p/6RVp4/KG0+NgjadnRJ9KKI0+lzw4+29GL/CP/D3nllX8D+WFSD0vQmpUAAAAASUVORK5CYII=" InformativeScreenshot="a18e450e417331189ca0248d4fb1202a.jpg" Selector="&lt;html app='chrome.exe' title='모니터 : 네이버 쇼핑' /&gt;" Title="모니터 : 네이버 쇼핑" Url="https://search.shopping.naver.com/search/all?query=%EB%AA%A8%EB%8B%88%ED%84%B0" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
-    <ui:FilterDataTable DataTable="[dt모니터]" DisplayName="데이터 가공 | Filter Data Table" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="625.6,202.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt모니터]" SelectColumnsMode="Remove">
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt모니터]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="625.6,396.8" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="496,191.2" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="433.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Object">[CurrentRow("가격")]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentRow("가격").ToString.Replace(",","").Trim]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="625.6,64.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="496,434.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,121.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str가격]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["9,000"]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,121.6" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[str가격]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[str가격.Replace(",","")]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <Assign sap:VirtualizedContainerService.HintSize="433.6,104.8" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[int가격]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[Cint(str가격)]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <ui:FilterDataTable DataTable="[dt모니터]" DisplayName="데이터 가공 | Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="625.6,202.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt모니터]" SelectColumnsMode="Remove">
+      <ui:FilterDataTable.Filters>
+        <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+          <ui:FilterOperationArgument BooleanOperator="And" Operator="CONTAINS">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["제품이름"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["삼성"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+          <ui:FilterOperationArgument BooleanOperator="Or" Operator="CONTAINS">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["제품이름"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:String">["LG"]</InArgument>
+            </ui:FilterOperationArgument.Operand>
+          </ui:FilterOperationArgument>
+        </scg:List>
+      </ui:FilterDataTable.Filters>
+      <ui:FilterDataTable.SelectColumns>
+        <scg:List x:TypeArguments="InArgument" Capacity="4">
+          <x:Null />
+        </scg:List>
+      </ui:FilterDataTable.SelectColumns>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:FilterDataTable>
+    <ui:FilterDataTable DataTable="[dt모니터]" DisplayName="데이터 가공 | Filter Data Table" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="625.6,202.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dt모니터]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
             <ui:FilterOperationArgument.Column>
               <InArgument x:TypeArguments="x:String">["제품이름"]</InArgument>
             </ui:FilterOperationArgument.Column>
+          </ui:FilterOperationArgument>
+          <ui:FilterOperationArgument BooleanOperator="Or" Operator="GTE">
+            <ui:FilterOperationArgument.Column>
+              <InArgument x:TypeArguments="x:String">["가격"]</InArgument>
+            </ui:FilterOperationArgument.Column>
+            <ui:FilterOperationArgument.Operand>
+              <InArgument x:TypeArguments="x:Int32">[500000]</InArgument>
+            </ui:FilterOperationArgument.Operand>
           </ui:FilterOperationArgument>
         </scg:List>
       </ui:FilterDataTable.Filters>
@@ -429,6 +443,6 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ueab:ExcelProcessScopeX>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="625.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;모니터 검색 종료&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="625.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;쇼핑 검색 종료&quot;]" />
   </Sequence>
 </Activity>
