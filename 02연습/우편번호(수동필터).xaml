@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="우편번호" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="822.4,5373.6" sap2010:WorkflowViewState.IdRef="우편번호_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="우편번호" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="843.2,5493.6" sap2010:WorkflowViewState.IdRef="우편번호_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -140,7 +140,13 @@
       <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="1) 우편번호 일치여부 확인 과제&#xA;- 제공한 엑셀파일(Address_Total.xlsx)을 읽고 상가업소번호, 도로명주소, 신우편번호만 남긴다.&#xA;- &quot;일치여부&quot; 컬럼을 추가한다.&#xA;- 도로명 주소 안내시스템 사이트에 접속한다. (팝업창이 있다면 닫기)&#xA;  (https://www.juso.go.kr/openIndexPage.do)&#xA;- 엑셀에서 읽어온 데이터 중에서 도로명 주소를 사이트의 도로명주소 검색창에 입력한다.&#xA;- 화면에서 '우편 번호'를 추출하여 엑셀에서 읽어온 데이터의 '신우편번호'와 일치하는지 확인한다.&#xA;  (도로명 주소가 여러개 나오는 경우에는 첫번째 주소의 우편번호를 추출할 것)&#xA;- &quot;일치여부&quot; 컬럼에 결과값 입력(일치하면 &quot;일치&quot;, 일치하지 않으면 &quot;불일치&quot;)&#xA;- 모든 행의 작업이 끝나면 작업하고 있는 시트에 &quot;일치여부확인&quot; 시트를 추가하여 Address_Total.xlsx에 저장한다." DisplayName="우편번호" sap:VirtualizedContainerService.HintSize="766.4,5308.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">False</x:Boolean>
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="1) 우편번호 일치여부 확인 과제&#xA;- 제공한 엑셀파일(Address_Total.xlsx)을 읽고 상가업소번호, 도로명주소, 신우편번호만 남긴다.&#xA;- &quot;일치여부&quot; 컬럼을 추가한다.&#xA;- 도로명 주소 안내시스템 사이트에 접속한다. (팝업창이 있다면 닫기)&#xA;  (https://www.juso.go.kr/openIndexPage.do)&#xA;- 엑셀에서 읽어온 데이터 중에서 도로명 주소를 사이트의 도로명주소 검색창에 입력한다.&#xA;- 화면에서 '우편 번호'를 추출하여 엑셀에서 읽어온 데이터의 '신우편번호'와 일치하는지 확인한다.&#xA;  (도로명 주소가 여러개 나오는 경우에는 첫번째 주소의 우편번호를 추출할 것)&#xA;- &quot;일치여부&quot; 컬럼에 결과값 입력(일치하면 &quot;일치&quot;, 일치하지 않으면 &quot;불일치&quot;)&#xA;- 모든 행의 작업이 끝나면 작업하고 있는 시트에 &quot;일치여부확인&quot; 시트를 추가하여 Address_Total.xlsx에 저장한다." DisplayName="우편번호" sap:VirtualizedContainerService.HintSize="766.4,5428.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dt상가" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dt필터" />
@@ -158,6 +164,7 @@
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:ReadRange AddHeaders="True" DataTable="[dt상가]" DisplayName="상가정보읽기 | Read Range Workbook" sap:VirtualizedContainerService.HintSize="704,128" sap2010:WorkflowViewState.IdRef="ReadRange_1" Range="A1" SheetName="상가업소정보" WorkbookPath="C:\Users\dnjst\Documents\카카오톡 받은 파일\Address_Total.xlsx" />
@@ -214,7 +221,7 @@
         <InArgument x:TypeArguments="sd:DataTable">[dt상가]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="704,390.4" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="704,430.4" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
         <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="416,272" sap2010:WorkflowViewState.IdRef="Sequence_17">
           <sap:WorkflowViewStateService.ViewState>
@@ -238,9 +245,15 @@
           </ui:FilterDataTable>
         </Sequence>
       </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
     </ui:CommentOut>
     <ui:BuildDataTable DataTable="[dt일치]" DisplayName="조인용테이블 | Build Data Table" sap:VirtualizedContainerService.HintSize="704,100" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;일치여부&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;비교&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-    <uix:NApplicationCard CloseMode="IfOpenedByAppBrowser" DisplayName="Use Browser Chrome: 주소정보누리집(도로명주소 안내시스템)" sap:VirtualizedContainerService.HintSize="704,1956" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="fbbe45d2-bc3e-4e44-bc80-83d4e00125c7" WindowResize="Maximize">
+    <uix:NApplicationCard CloseMode="IfOpenedByAppBrowser" DisplayName="Use Browser Chrome: 주소정보누리집(도로명주소 안내시스템)" sap:VirtualizedContainerService.HintSize="704,1996" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="fbbe45d2-bc3e-4e44-bc80-83d4e00125c7" WindowResize="Maximize">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -366,7 +379,7 @@
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
     </ui:FilterDataTable>
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="엑셀 생성 | Excel Process Scope" sap:VirtualizedContainerService.HintSize="704,758.4" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="엑셀 생성 | Excel Process Scope" sap:VirtualizedContainerService.HintSize="704,798.4" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
       <ueab:ExcelProcessScopeX.Body>
         <ActivityAction x:TypeArguments="ui:IExcelProcess">
           <ActivityAction.Argument>
