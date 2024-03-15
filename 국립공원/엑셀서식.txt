@@ -1,0 +1,5 @@
+Sub CopyFormat(SourceSheet As String, TargetSheet As String)
+    Sheets(SourceSheet).Cells.Copy
+    Sheets(TargetSheet).Cells.PasteSpecial Paste:=xlPasteFormats
+    Application.CutCopyMode = False
+End Sub
