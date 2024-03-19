@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="국립공원" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="840.8,2454.4" sap2010:WorkflowViewState.IdRef="국립공원_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="국립공원" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="840.8,892" sap2010:WorkflowViewState.IdRef="국립공원_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -113,7 +113,12 @@
       <AssemblyReference>Microsoft.Graph.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="- &quot;산이름_joinDT.xlsx&quot; 시트를 열어서 Copy File 한다. (파일명 : 산이름_JoinDT_정수진.xlsx)&#xA;- 국립공원시트와 탐방코스를 읽어 두개의 DT를 생성한다.&#xA;- 두 DT를 결합 및 가공하여 Result 시트에 기입한다.&#xA;&#xA;- 가공 규칙1: dt탐방코스와 dt국립공원에서 산이름 컬럼의 값이 같을 때 결합&#xA;- 가공 규칙2: 결합한 새로운 DT에서 탐방코스 컬럼에 값이 비어있는 행 삭제&#xA;- 가공 규칙3: 산이름 오름차순 정렬" DisplayName="국립공원" sap:VirtualizedContainerService.HintSize="688,2839.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="- &quot;산이름_joinDT.xlsx&quot; 시트를 열어서 Copy File 한다. (파일명 : 산이름_JoinDT_정수진.xlsx)&#xA;- 국립공원시트와 탐방코스를 읽어 두개의 DT를 생성한다.&#xA;- 두 DT를 결합 및 가공하여 Result 시트에 기입한다.&#xA;&#xA;- 가공 규칙1: dt탐방코스와 dt국립공원에서 산이름 컬럼의 값이 같을 때 결합&#xA;- 가공 규칙2: 결합한 새로운 DT에서 탐방코스 컬럼에 값이 비어있는 행 삭제&#xA;- 가공 규칙3: 산이름 오름차순 정렬" DisplayName="국립공원" sap:VirtualizedContainerService.HintSize="416,827.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt국립공원" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt탐방코스" />
@@ -126,10 +131,11 @@
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <x:Boolean x:Key="IsPinned">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CopyFile ContinueOnError="{x:Null}" Destination="C:\Users\dnjst\Documents\UiPath\RPA2\dataExp\산이름_JoinDT_원성현.xlsx" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="625.6,195.2" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="원본\산이름_JoinDT.xlsx" />
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="625.6,663.2" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+    <ui:CopyFile ContinueOnError="{x:Null}" Destination="C:\Users\dnjst\Documents\UiPath\RPA2\dataExp\산이름_JoinDT_원성현.xlsx" DisplayName="엑셀 복제 | Copy File" sap:VirtualizedContainerService.HintSize="353.6,64.8" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="원본\산이름_JoinDT.xlsx" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="353.6,64.8" sap2010:WorkflowViewState.IdRef="CommentOut_2">
       <ui:CommentOut.Body>
         <Sequence DisplayName="무시된 액티비티" sap:VirtualizedContainerService.HintSize="512,544.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
           <sap:WorkflowViewStateService.ViewState>
@@ -158,9 +164,9 @@
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>
-    <ui:ReadRange AddHeaders="True" DataTable="[dt국립공원]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="625.6,128" sap2010:WorkflowViewState.IdRef="ReadRange_2" PreserveFormat="True" Range="A1" SheetName="국립공원" WorkbookPath="dataExp\산이름_JoinDT_원성현.xlsx" />
-    <ui:ReadRange AddHeaders="True" DataTable="[dt탐방코스]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="625.6,128" sap2010:WorkflowViewState.IdRef="ReadRange_3" PreserveFormat="True" Range="A1" SheetName="탐방코스" WorkbookPath="dataExp\산이름_JoinDT_원성현.xlsx" />
-    <ui:JoinDataTables DataTable1="[dt국립공원]" DataTable2="[dt탐방코스]" DisplayName="Join Data Tables" sap:VirtualizedContainerService.HintSize="625.6,100" sap2010:WorkflowViewState.IdRef="JoinDataTables_1" JoinType="Inner" OutputDataTable="[dt합본]">
+    <ui:ReadRange AddHeaders="True" DataTable="[dt국립공원]" DisplayName="엑셀 읽기 | Read Range Workbook" sap:VirtualizedContainerService.HintSize="353.6,64.8" sap2010:WorkflowViewState.IdRef="ReadRange_2" PreserveFormat="True" Range="A1" SheetName="국립공원" WorkbookPath="dataExp\산이름_JoinDT_원성현.xlsx" />
+    <ui:ReadRange AddHeaders="True" DataTable="[dt탐방코스]" DisplayName="엑셀 읽기 | Read Range Workbook" sap:VirtualizedContainerService.HintSize="353.6,64.8" sap2010:WorkflowViewState.IdRef="ReadRange_3" PreserveFormat="True" Range="A1" SheetName="탐방코스" WorkbookPath="dataExp\산이름_JoinDT_원성현.xlsx" />
+    <ui:JoinDataTables DataTable1="[dt국립공원]" DataTable2="[dt탐방코스]" DisplayName="두 테이블 조인 | Join Data Tables" sap:VirtualizedContainerService.HintSize="353.6,64.8" sap2010:WorkflowViewState.IdRef="JoinDataTables_1" JoinType="Inner" OutputDataTable="[dt합본]">
       <ui:JoinDataTables.Arguments>
         <scg:List x:TypeArguments="ui:JoinOperationArgument" Capacity="4">
           <ui:JoinOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EQ">
@@ -174,7 +180,7 @@
         </scg:List>
       </ui:JoinDataTables.Arguments>
     </ui:JoinDataTables>
-    <ui:FilterDataTable DataTable="[dt합본]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="625.6,202.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dt합본2]" SelectColumnsMode="Remove">
+    <ui:FilterDataTable DataTable="[dt합본]" DisplayName="불필요열 제거 | Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="353.6,64.8" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dt합본2]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument Column="{x:Null}" Operand="{x:Null}" BooleanOperator="And" Operator="LT" />
@@ -186,7 +192,7 @@
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
     </ui:FilterDataTable>
-    <ui:FilterDataTable DataTable="[dt합본2]" DisplayName="Filter Data Table" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="625.6,202.4" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt필터]" SelectColumnsMode="Remove">
+    <ui:FilterDataTable DataTable="[dt합본2]" DisplayName="공백열 제거 | Filter Data Table" FilterRowsMode="Remove" sap:VirtualizedContainerService.HintSize="353.6,64.8" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dt필터]" SelectColumnsMode="Remove">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument Operand="{x:Null}" BooleanOperator="And" Operator="EMPTY">
@@ -217,8 +223,8 @@
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
     </ui:FilterDataTable>
-    <ui:SortDataTable ColumnIndex="{x:Null}" DataColumn="{x:Null}" ColumnName="산이름" DataTable="[dt필터]" DisplayName="Sort Data Table" sap:VirtualizedContainerService.HintSize="625.6,120.8" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Ascending" OutputDataTable="[dt최종본]" SortOrder="Ascending" />
-    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="엑셀 생성 | Excel Process Scope" sap:VirtualizedContainerService.HintSize="625.6,886.4" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
+    <ui:SortDataTable ColumnIndex="{x:Null}" DataColumn="{x:Null}" ColumnName="산이름" DataTable="[dt필터]" DisplayName="DT 정렬 | Sort Data Table" sap:VirtualizedContainerService.HintSize="353.6,64.8" sap2010:WorkflowViewState.IdRef="SortDataTable_1" Order="Ascending" OutputDataTable="[dt최종본]" SortOrder="Ascending" />
+    <ueab:ExcelProcessScopeX DisplayAlerts="{x:Null}" ExistingProcessAction="{x:Null}" FileConflictResolution="{x:Null}" LaunchMethod="{x:Null}" LaunchTimeout="{x:Null}" MacroSettings="{x:Null}" ProcessMode="{x:Null}" ShowExcelWindow="{x:Null}" DisplayName="엑셀 생성 | Excel Process Scope" sap:VirtualizedContainerService.HintSize="353.6,48" sap2010:WorkflowViewState.IdRef="ExcelProcessScopeX_1">
       <ueab:ExcelProcessScopeX.Body>
         <ActivityAction x:TypeArguments="ui:IExcelProcess">
           <ActivityAction.Argument>
