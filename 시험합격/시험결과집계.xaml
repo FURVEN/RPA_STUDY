@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="시험결과집계" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="882.4,3596.8" sap2010:WorkflowViewState.IdRef="시험결과집계_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="시험결과집계" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="882.4,3727.2" sap2010:WorkflowViewState.IdRef="시험결과집계_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -122,7 +122,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="시험결과집계" sap:VirtualizedContainerService.HintSize="892.8,3532" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="시험결과집계" sap:VirtualizedContainerService.HintSize="892.8,3662.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dt입력" />
       <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="dt기준" />
@@ -141,14 +141,20 @@
         <x:Boolean x:Key="IsPinned">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="엑셀 카피 | Sequence" sap:VirtualizedContainerService.HintSize="830.4,176.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="엑셀 카피 | Sequence" sap:VirtualizedContainerService.HintSize="830.4,307.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:CopyFile ContinueOnError="{x:Null}" Destination="C:\Users\dnjst\Documents\UiPath\RPA2\dataExp\시험결과집계_원성현.xlsx" DisplayName="엑셀 복제 | Copy File" sap:VirtualizedContainerService.HintSize="387.2,48" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="원본\시험결과집계.xlsx" />
+      <ui:CopyFile ContinueOnError="{x:Null}" Destination="C:\Users\dnjst\Documents\UiPath\RPA2\dataExp\시험결과집계_원성현.xlsx" DisplayName="엑셀 복제 | Copy File" sap:VirtualizedContainerService.HintSize="387.2,178.4" sap2010:WorkflowViewState.IdRef="CopyFile_1" Overwrite="True" Path="원본\시험결과집계.xlsx">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CopyFile>
     </Sequence>
     <Sequence DisplayName="DT 생성 | Sequence" sap:VirtualizedContainerService.HintSize="830.4,568" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
@@ -452,7 +458,7 @@
                   <OutArgument x:TypeArguments="x:Object">[Current과목("합격률")]</OutArgument>
                 </Assign.To>
                 <Assign.Value>
-                  <InArgument x:TypeArguments="x:Double">[(int합격인원 / int시험인원) * 100]</InArgument>
+                  <InArgument x:TypeArguments="x:String">[Cstr((int합격인원 / int시험인원) * 100) +" %"]</InArgument>
                 </Assign.Value>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
